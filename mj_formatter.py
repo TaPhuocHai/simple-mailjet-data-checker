@@ -59,6 +59,3 @@ class mailjet:
         merged.to_csv(self.outputFile,index=False)
         del merged
         
-if __name__ == "__main__":
-    mj = mailjet('input\THEFACESHOP Mainlist.csv', 'input\mj_exclusion.csv', 'exported.csv')
-    mj.formatData()

@@ -6,13 +6,20 @@ import os
 from mj_formatter import mailjet
 
 # Default directories where input and output data located
+INPUT_DIR_NAME = 'input/'
+OUTPUT_DIR_NAME = 'output/'
 
-NEW_DATA = '' # Name of the data with file extension (csv, xlsx)
 DV_API_KEY = '' # API KEY of Data validation
 
-INPUT_DIR_NAME = 'input'
-OUTPUT_DIR_NAME = 'output'
+NEW_DATA           = '' # Name of the data with file extension (csv, xlsx)
+MJ_MainData_TFS    = ''            # Downloaded data from mainlist 
+MJ_Exclusion_TFS   = ''      # Downloaded data from exclusion
 
+
+# Folder setting
+mainlistData  = INPUT_DIR_NAME  + MJ_MainData_TFS
+exclusionData = INPUT_DIR_NAME  + MJ_Exclusion_TFS
+exportedData = OUTPUT_DIR_NAME + 'exported.csv' # no need to change, this is formatted DB data
 
 def clean_data(current_users):
     global NEW_DATA
@@ -122,16 +129,8 @@ def getDvScore():
 
 
 if __name__ == "__main__":
-    mainlistData  = 'input\THEFACESHOP Mainlist.csv'
-    exclusionData = 'input\mj_exclusion.csv'
-    exportedData = 'exported.csv'
-
-
-    mj = mailjet(mainlistData, exclusionData, exclusionData)
-
+    mj = mailjet(mainlistData, exclusionData, exportedData)
     mj.formatData()
-
-    mj_db = pd.read_csv(exportedData)
-    
+    mj_db = pd.read_csv(exportedData)    
     print("2) Crosscheck new data with Mailjet data")
     clean_data(mj_db)
