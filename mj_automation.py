@@ -6,19 +6,19 @@ import os
 from mj_formatter import mailjet
 
 # Default directories where input and output data located
-INPUT_DIR_NAME = 'input/'
-OUTPUT_DIR_NAME = 'output/'
+INPUT_DIR_NAME     = 'input/'
+OUTPUT_DIR_NAME    = 'output/'
 
-DV_API_KEY = '' # API KEY of Data validation
+DV_API_KEY         = '' # API KEY of Data validation
 
 NEW_DATA           = '' # Name of the data with file extension (csv, xlsx)
-MJ_MainData_TFS    = ''            # Downloaded data from mainlist 
-MJ_Exclusion_TFS   = ''      # Downloaded data from exclusion
+MJ_MainData        = '' # Downloaded data from mainlist 
+MJ_Exclusion       = '' # Downloaded data from exclusion
 
 
 # Folder setting
-mainlistData  = INPUT_DIR_NAME  + MJ_MainData_TFS
-exclusionData = INPUT_DIR_NAME  + MJ_Exclusion_TFS
+mainlistData  = INPUT_DIR_NAME  + MJ_MainData
+exclusionData = INPUT_DIR_NAME  + MJ_Exclusion
 exportedData = OUTPUT_DIR_NAME + 'exported.csv' # no need to change, this is formatted DB data
 
 def clean_data(current_users):
