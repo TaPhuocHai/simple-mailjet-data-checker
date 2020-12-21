@@ -4,3 +4,6 @@ mj_automation-dev.py
 input/*
 output/*
 exported.csv
+build/*
+dist/*
+__pycache__/*
