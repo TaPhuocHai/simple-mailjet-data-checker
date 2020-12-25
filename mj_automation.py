@@ -42,10 +42,10 @@ def clean_data(current_users, NEW_DATA):
         # new_user_data = pd.read_csv(INPUT_DIR_NAME + '/' + NEW_DATA)
         new_user_data = pd.read_csv(NEW_DATA)
 
-    elif file_extension == 'xlsx' or file_extension == 'xls':
-        new_user_data = pd.read_excel(NEW_DATA)
-        # new_user_data = pd.read_excel(INPUT_DIR_NAME + '/' + NEW_DATA)
-
+    elif file_extension == 'xls':
+        new_user_data = pd.read_excel(NEW_DATA, engine='xlrd')
+    elif file_extension == 'xlsx':
+        new_user_data = pd.read_excel(NEW_DATA, engine='openpyxl')
     else:
         return -1, "error: file_extention is not supported: " + file_extension
 
