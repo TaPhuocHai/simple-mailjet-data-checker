@@ -134,48 +134,48 @@ def clean_data(current_users, NEW_DATA):
     return displayText
 
 
-def getDvScore(NEW_DATA):
-    result =  '----------------------------------\n'
-    result += 'Checking DV Score'
-    file_name = os.path.splitext(NEW_DATA)[0]
-    file = file_name + "_to_hyatt.csv"
-    url = 'https://dv3.datavalidation.com/api/v2/user/me/list/create_upload_url/'
-    params = '?name=' + file + '&email_column_index=0&has_header=0&start_validation=false'
-    headers = {'Authorization': 'Bearer ' + DV_API_KEY}
-    s = requests.Session()
-    a = requests.adapters.HTTPAdapter(max_retries=3)
-    s.mount("https://", a)
-    res = s.get(url+params, headers=headers)
-    upload_csv_url = res.json()
-    files = {
-        'file': open(file, 'rb')
-    }
-    list_id = s.post(upload_csv_url, headers=headers, files=files)
-    dv_result_url = 'https://dv3.datavalidation.com/api/v2/user/me/list/' + list_id.json()
-    dv_result = s.get(dv_result_url, headers=headers).json()
+# def getDvScore(NEW_DATA):
+#     result =  '----------------------------------\n'
+#     result += 'Checking DV Score'
+#     file_name = os.path.splitext(NEW_DATA)[0]
+#     file = file_name + "_to_hyatt.csv"
+#     url = 'https://dv3.datavalidation.com/api/v2/user/me/list/create_upload_url/'
+#     params = '?name=' + file + '&email_column_index=0&has_header=0&start_validation=false'
+#     headers = {'Authorization': 'Bearer ' + DV_API_KEY}
+#     s = requests.Session()
+#     a = requests.adapters.HTTPAdapter(max_retries=3)
+#     s.mount("https://", a)
+#     res = s.get(url+params, headers=headers)
+#     upload_csv_url = res.json()
+#     files = {
+#         'file': open(file, 'rb')
+#     }
+#     list_id = s.post(upload_csv_url, headers=headers, files=files)
+#     dv_result_url = 'https://dv3.datavalidation.com/api/v2/user/me/list/' + list_id.json()
+#     dv_result = s.get(dv_result_url, headers=headers).json()
     
-    while dv_result['status_value'] == 'PRE_VALIDATING':
-        dv_result = requests.get(dv_result_url, headers=headers).json()
-        result += "Status percent complete: " + str(dv_result['status_percent_complete']) + "\n"
-        time.sleep(5)  # sleep 5 seconds
+#     while dv_result['status_value'] == 'PRE_VALIDATING':
+#         dv_result = requests.get(dv_result_url, headers=headers).json()
+#         result += "Status percent complete: " + str(dv_result['status_percent_complete']) + "\n"
+#         time.sleep(5)  # sleep 5 seconds
 
-    try:
-        def percent(count): return round((count / dv_result['subscriber_count']), 2) * 100
-        result +=  "Done checking dv score"
-        result += "The grade summary is: \n" 
-        for score_name, score_value in dv_result['grade_summary'].items():
-            score = '%-3s : ' % (score_name) + str(percent(score_value)) 
-            result += score + "\n"
-        return result
+#     try:
+#         def percent(count): return round((count / dv_result['subscriber_count']), 2) * 100
+#         result +=  "Done checking dv score"
+#         result += "The grade summary is: \n" 
+#         for score_name, score_value in dv_result['grade_summary'].items():
+#             score = '%-3s : ' % (score_name) + str(percent(score_value)) 
+#             result += score + "\n"
+#         return result
 
-    except:
-        if (dv_result['subscriber_count'] == 0):
-            result +=  '''
-                    Empty list of emails were sent for dv validation!
-                    Perhaps no new email to check dv?
-                    Program terminated
-                       '''
-            return result
+#     except:
+#         if (dv_result['subscriber_count'] == 0):
+#             result +=  '''
+#                     Empty list of emails were sent for dv validation!
+#                     Perhaps no new email to check dv?
+#                     Program terminated
+#                        '''
+#             return result
 
 
 # if __name__ == "__main__":
