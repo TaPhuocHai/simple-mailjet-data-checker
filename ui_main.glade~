@@ -1,4 +1,3 @@
-gladeUi = '''
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.22.2 -->
 <interface>
@@ -162,7 +161,7 @@ gladeUi = '''
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkProgressBar" id="progressBar">
+                  <object class="GtkProgressBar">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="pulse_step">1</property>
@@ -206,4 +205,3 @@ gladeUi = '''
     </child>
   </object>
 </interface>
-'''
