@@ -9,3 +9,5 @@ dist/*
 __pycache__/*
 
 ui_main-dev.py
+*.spec
+ui_main.spec

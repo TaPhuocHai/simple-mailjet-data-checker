@@ -5,7 +5,7 @@ from mj_formatter import mailjet
 import pandas as pd 
 import requests
 import os
-from mj_automation import clean_data, getDvScore
+from mj_automation import clean_data
 from pyGlade import *
 
 import time
@@ -14,7 +14,7 @@ import time
 INPUT_DIR_NAME     = 'input/'
 OUTPUT_DIR_NAME    = 'output/'
 
-DV_API_KEY         = '' # API KEY of Data validation
+
 
 NEW_DATA           = '' # Name of the data with file extension (csv, xlsx)
 MJ_MainData        = '' # Downloaded data from mainlist 
@@ -77,6 +77,7 @@ class Handler:
 
 
     def getDV(self):
+        global DV_API_KEY
         DisplayWindowDV = builder.get_object('DisplayWindowDV')
         self.textbufferDV = DisplayWindowDV.get_buffer()
         #   -------------------------------------------------------- #        
@@ -89,7 +90,7 @@ class Handler:
         file = file_name + "_to_hyatt.csv"
         url = 'https://dv3.datavalidation.com/api/v2/user/me/list/create_upload_url/'
         params = '?name=' + file + '&email_column_index=0&has_header=0&start_validation=false'
-        DV_API_KEY = '' # Data validation API KEY
+        DV_API_KEY  = '' # API KEY of Data validation
         headers = {'Authorization': 'Bearer ' + DV_API_KEY}
         s = requests.Session()
         a = requests.adapters.HTTPAdapter(max_retries=3)
