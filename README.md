@@ -1,4 +1,4 @@
-# mailjet_automation_tool
+# simple-mailjet-data-checker
 
 ## How To Install
 Go to the release page: https://github.com/phatvo2015/simple-mailjet-data-checker/releases/tag/2 and download the specific build version.
