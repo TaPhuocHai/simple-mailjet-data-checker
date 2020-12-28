@@ -5,12 +5,12 @@ Go to the release page: https://github.com/phatvo2015/simple-mailjet-data-checke
 There is no requirements to run the application.
 
 ## How to Use
+1. Requirements
+- The application need no other libraries to be preinstalled
+- The data to check must ensure to have a email header (e.g. email, e-mail)
+- You need to have access to Mailjet account to retrieve database to perform data crossheck.
 
-You also need to have 2 folder: input and output.
-
-In the input folder, place the data in csv or excel format (xlsx, xls) which must have a email column. Then open the file mailjet_automation.py, change the constant NEW_DATA to the name of the new data file.
-
-Make sure you follow these steps to prepare the script to run.
+Make sure you follow these steps to prepare the the application to run.
 1) Go to the Mailjet account
 2) Download the data from the main contact list and put the file in the input folder
 3) Download the data from exclusion list and put the file in the input folder
