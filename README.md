@@ -4,11 +4,14 @@
 Go to the release page: https://github.com/phatvo2015/simple-mailjet-data-checker/releases/tag/2 and download the specific build version.
 There is no requirements to run the application.
 
-## How to Use
-1. Requirements
+
+## Requirements
+
 - The application need no other libraries to be preinstalled
 - The data to check must ensure to have a email header (e.g. email, e-mail)
 - You need to have access to Mailjet account to retrieve database to perform data crossheck.
+
+## How to Use
 
 Make sure you follow these steps to prepare the the application to run.
 1) Go to the Mailjet account
